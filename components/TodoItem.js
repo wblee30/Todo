@@ -9,16 +9,16 @@ import DeleteButton from "./DeleteButton"
 const TodoItem = ({
     title,
     done,
+    remove,
+    toggle,
 }) => {
     return(
         <GestureHandlerRootView>
-            <Swipeable renderRightActions={() => <DeleteButton/> }>
+            <Swipeable renderRightActions={() => <DeleteButton onPress={remove} /> }>
                 <View style={styles.container}>
                     <View style={styles.todo}>
                         <TouchableOpacity 
-                        activeOpacity={0.8}
-                        style={done ? styles.done : styles.check}
-                        >
+                        activeOpacity={0.8} style={done ? styles.done : styles.check} onPress={toggle}>
                             <FontAwesome name="check" color={done ? '#FFFFFF': '#E0E0E0'} size={14} />
                         </TouchableOpacity>
                         <Text style = {styles.title}>

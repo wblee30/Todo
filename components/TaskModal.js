@@ -4,14 +4,23 @@ import { TextInput } from "react-native-gesture-handler";
 import Modal from 'react-native-modal'
 
 const TaskModal = ({
-    isVisible
+    isVisible,
+    add,
+    hide
 }) => {
+    let content = ''
     return(
         <Modal isVisible={isVisible}
+        onBackdropPress={hide}
         avoidKeyboard
         style={styles.modal}>
             <View style={styles.container}>
-                <TextInput placeholder="새로운 할 일을 추가해 주세요."/>
+                <TextInput 
+                    onChangeText={(text) => {
+                        content=text
+                    }}
+                    onEndEditing={() => add(content)}
+                    placeholder="새로운 할 일을 추가해 주세요."/>
             </View>
         </Modal>
     )
